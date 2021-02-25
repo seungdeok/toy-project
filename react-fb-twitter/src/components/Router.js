@@ -7,18 +7,18 @@ import Home from 'routes/Home';
 import Auth from 'routes/Auth';
 import Profile from 'routes/Profile';
 
-const RootRouter =  ({ isLoggedIn }) => {
+const RootRouter =  ({ refreshUser, isLoggedIn, userInfo }) => {
   return (
     <Router>
-      { isLoggedIn && <Navigation />}
+      { isLoggedIn && <Navigation userInfo={userInfo} />}
       <Switch>
         {isLoggedIn ? (
           <>
           <Route exact path='/'>
-            <Home />
+            <Home userInfo={userInfo} />
           </Route>
           <Route exact path='/profile'>
-            <Profile />
+            <Profile refreshUser={refreshUser} userInfo={userInfo} />
           </Route>
           </>
         ) : (
